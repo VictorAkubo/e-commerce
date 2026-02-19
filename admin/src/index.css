@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+/* In v4, we define custom "Awesome" variables right here */
+@theme {
+  --color-admin-base: #f8fafc;
+  --color-accent: #3b82f6;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2.5rem;
+}
+
+/* Optional: Add a nice smooth scroll for the dashboard */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-admin-base);
+  color: #1e293b;
+}
