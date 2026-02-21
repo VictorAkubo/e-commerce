@@ -1,12 +1,18 @@
 import {Router} from "express"
-import {getProducts} from "../controllers/productControllers.js"
+import {getProducts,postProduct} from "../controllers/productControllers.js"
+import multer from "multer"
+
+const upload = multer({ dest: './public/data/uploads/' })
 const productRouter = Router()
 
+
 productRouter.get('/',getProducts)
+
+productRouter.post("/post", upload.single("img"), postProduct);
 /*
-router.post('/',postProduct)
-router.put('/update/:id',updateProduct)
+productRouter.put('/update/:id',updateProduct)
 router.delete('/delete/:id',deleteProduct)
 */
+
 
 export default productRouter;

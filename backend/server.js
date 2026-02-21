@@ -3,13 +3,16 @@ import mongoose from "mongoose";
 import cors from "cors";
 import Stripe from "stripe";
 import productRouter from "./routes/productRoutes.js"; // your existing product routes
-import checkoutRouter from "./routes/paymentRoutes.js"; // we’ll create this
+// we’ll create this
 import 'dotenv/config';
+import path from "path"
 
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public"));
+/*app.use(express.static(path.join(__dirname,"public")))*/
 
 // Connect to MongoDB
 await mongoose.connect(
@@ -25,28 +28,6 @@ app.response.sendStatus = function (statusCode, type, message) {
 }
 // Routes
 app.use("/", productRouter);
-
-const myLogger = function (req, res, next) {
-console.log('LOGGED')
-next()
-}
-
-const requestTime = function (req, res, next) {
-  const date = new Date()
-req.requestTime = date.toDateString()
-
-next()
-}
-//Which of the middleware are we gonna use
-app.use(myLogger)
-app.use(requestTime)
-
-app.get('/hello', (req, res) => {
-let responseText = 'Hello World!'
-responseText += `Requested at: ${req.requestTime}`
-/*res.sendStatus(200,'application/json',{"message":responseText})*/
-})
-
 
 // Start server
 app.listen(5000, () => {

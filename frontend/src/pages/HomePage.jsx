@@ -7,7 +7,9 @@ import { CartContext } from "../context/AddtocartContextProvider.js";
 
 const HomePage = () => {
   const navigate = useNavigate();
+  const [allProduct,setAllProduct] = useState([])
   const { cart, setCart } = useContext(CartContext);
+  
   const [searchQuery, setSearchQuery] = useState("");
 
   // Function to add item to cart
@@ -17,13 +19,19 @@ const HomePage = () => {
 
   // Reset scroll on mount
   useEffect(() => {
+    fetch("http://localhost:5000",{
+      method:"GET"
+    }).then(res=>res.json()).then((data)=>{
+      setAllProduct(data.product)
+      console.log(data)
+    })
     window.scrollTo(0, 0);
   }, []);
 
   // Reusable Product Section Component
   const ProductSection = ({ title, category, tagline }) => {
     // Filter products based on category and search bar
-    const sectionProducts = products.filter(p => 
+    const sectionProducts = allProduct.filter(p => 
       p.category === category && 
       p.name.toLowerCase().includes(searchQuery.toLowerCase())
     ).slice(0, 4); // Show only top 4 on homepage for a clean look

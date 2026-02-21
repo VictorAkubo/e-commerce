@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Sidebar from "./components/Sidebar.jsx"
 // Ensure these paths match your actual folder structure!
 import Dashboard from "./pages/Dashboard.jsx" 
-import AddProduct from "./pages/AddProduct.jsx" // Rename the upload component to this for clarity
+import AddProduct from "./pages/AddProduct.jsx"
 
 function App() {
   const [activeTab, setActiveTab] = useState('overview');

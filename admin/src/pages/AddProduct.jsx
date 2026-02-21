@@ -4,10 +4,13 @@ import {
   Upload, X, CheckCircle2, ChevronRight, 
   Tag, Info, Star, Hash, Palette, Ruler 
 } from 'lucide-react';
+import { ToastContainer, toast } from 'react-toastify';
+  
 
 const AddProduct = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [buttonText,setButtonText] = useState("Publish Item")
   const fileInputRef = useRef(null);
   
   const [imageFile, setImageFile] = useState(null);
@@ -81,11 +84,39 @@ const AddProduct = () => {
 
     console.log("Ready to send to MongoDB:", finalData);
     
-    // Simulate API call
-    await new Promise(res => setTimeout(res, 2000));
+  const formDataToSend = new FormData();
+
+// append normal fields
+formDataToSend.append("name", finalData.name);
+formDataToSend.append("description", finalData.description);
+formDataToSend.append("price", finalData.price);
+formDataToSend.append("oldPrice", finalData.oldPrice);
+formDataToSend.append("rating", finalData.rating);
+formDataToSend.append("totalReviews", finalData.totalReviews);
+formDataToSend.append("stock", finalData.stock);
+
+// arrays must be stringified
+formDataToSend.append("colors", JSON.stringify(colors));
+formDataToSend.append("sizes", JSON.stringify(sizes));
+
+// append image file
+formDataToSend.append("img", imageFile);
+
+  await fetch("http://localhost:5000/post", {
+  method: "POST",
+  body: formDataToSend,
+}).then(res => res.json())
+  .then(data => {
+    console.log(data);
+    setSuccess(true)
     setLoading(false);
-    setSuccess(true);
-    setTimeout(() => setSuccess(false), 3000);
+    toast("product created");
+    
+  }).catch(err => {
+    setLoading(false);
+    setButtonText("Error");
+  });
+    
   };
 
   return (
@@ -203,10 +234,16 @@ const AddProduct = () => {
             type="submit" 
             disabled={loading || !imageFile}
             className={`w-full py-5 rounded-[2rem] font-black text-lg shadow-xl shadow-blue-100 transition-all active:scale-95 flex items-center justify-center gap-2 
-              ${loading || !imageFile ? 'bg-slate-100 text-slate-400' : 'bg-blue-600 text-white hover:bg-blue-700'}`}
+              ${buttonText === "Error" 
+    ? 'bg-red-600 text-white' 
+    : (loading || !imageFile) 
+      ? 'bg-slate-100 text-slate-400' 
+      : 'bg-blue-600 text-white hover:bg-blue-700'}
+`}
           >
-            {loading ? "Publishing..." : <>Publish Item <ChevronRight size={20}/></>}
+            {loading ? "Publishing..." : <>{buttonText} <ChevronRight size={20}/></>}
           </button>
+          <ToastContainer />
 
           <AnimatePresence>
             {success && (
