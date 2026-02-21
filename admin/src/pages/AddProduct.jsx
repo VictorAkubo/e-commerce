@@ -94,6 +94,7 @@ formDataToSend.append("oldPrice", finalData.oldPrice);
 formDataToSend.append("rating", finalData.rating);
 formDataToSend.append("totalReviews", finalData.totalReviews);
 formDataToSend.append("stock", finalData.stock);
+formDataToSend.append("category", finalData.category);
 
 // arrays must be stringified
 formDataToSend.append("colors", JSON.stringify(colors));

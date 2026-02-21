@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
-import { products } from "../config/db.js";
+/*import { products } from "../config/db.js";*/
 import { Search, ShoppingCart, Plus, ArrowRight } from 'lucide-react';
 import { CartContext } from "../context/AddtocartContextProvider.js";
 
@@ -19,14 +19,15 @@ const HomePage = () => {
 
   // Reset scroll on mount
   useEffect(() => {
-    fetch("http://localhost:5000",{
-      method:"GET"
-    }).then(res=>res.json()).then((data)=>{
-      setAllProduct(data.product)
-      console.log(data)
-    })
-    window.scrollTo(0, 0);
-  }, []);
+    fetch("http://localhost:5000", { method: "GET" })
+      .then(res => res.json())
+      .then((data) => {
+        setAllProduct(data.product);
+        console.log(data);
+        window.scrollTo(0, 0);
+      })
+      .catch(err => console.error("Fetch error:", err));
+}, []);
 
   // Reusable Product Section Component
   const ProductSection = ({ title, category, tagline }) => {
@@ -55,9 +56,9 @@ const HomePage = () => {
 
         <div className="product-grid">
           {sectionProducts.map(product => (
-            <div className="product-card" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+            <div className="product-card" key={product._id} onClick={() => navigate(`/product/${product.id}`)}>
               <div className="card-image-wrapper">
-                <img src={product.img} alt={product.name} className="product-img" />
+                <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} className="product-img" />
                 <div className="card-overlay">
                    <button 
                     className="quick-add-btn" 

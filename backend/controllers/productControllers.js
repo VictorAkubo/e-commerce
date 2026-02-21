@@ -18,7 +18,7 @@ export const getProducts = async(req, res) => {
 export const postProduct = async (req, res) => {
   try {
     const {
-      title,
+      name,
       description,
       price,
       oldPrice,
@@ -27,6 +27,7 @@ export const postProduct = async (req, res) => {
       stock,
       colors,
       sizes,
+      category
     } = req.body;
 
     const newProduct = new Product({
@@ -38,6 +39,7 @@ export const postProduct = async (req, res) => {
       totalReviews: Number(totalReviews),
       stock: Number(stock),
       colors: JSON.parse(colors),
+      category,
       sizes: JSON.parse(sizes),
       img: req.file ? req.file.filename : null
     });
