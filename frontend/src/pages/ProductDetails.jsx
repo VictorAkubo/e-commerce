@@ -4,22 +4,26 @@ import { useParams, useNavigate } from "react-router-dom";
 import { products } from "../config/db";
 import { ShoppingBag, Star, ChevronLeft, Check, Plus } from "lucide-react";
 import { CartContext } from "../context/AddtocartContextProvider";
+import {ProductContext} from "../context/ProductContext.js"
 
 const ProductDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const {allProducts,setAllProducts} = useContext(ProductContext)
   const { setCart } = useContext(CartContext);
-  const product = products.find((p) => p.id === Number(id));
+  const product = allProducts.find((p) => p._id === Number(id));
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
 
-  if (!product) return <div className="error-state">Product not found</div>;
+  if (!product) return <div className="error-state"><h2>Product not found</h2>
+  <img src="/emptypage.gif"/>
+  </div>;
 
   // Filter for Related Products (Same category, excluding current product)
-  const relatedProducts = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
+  const relatedProducts = allProducts
+    .filter((p) => p.category === product.category && p._id !== product._id)
     .slice(0, 4); // Limit to 4 items
 
   const addToCart = (id) => {
@@ -39,7 +43,7 @@ const ProductDetails = () => {
           {/* Left: Image Section */}
           <div className="image-display">
             <div className="discount-tag">-{discount}%</div>
-            <img src={`/${product.img}`} alt={product.name} />
+            <img src={`http://localhost/5000/data/uploads/${product.img}`} alt={product.name} />
           </div>
 
           {/* Right: Info Section */}

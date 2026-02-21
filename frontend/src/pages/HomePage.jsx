@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 /*import { products } from "../config/db.js";*/
 import { Search, ShoppingCart, Plus, ArrowRight } from 'lucide-react';
 import { CartContext } from "../context/AddtocartContextProvider.js";
+import {ProductContext} from "../context/ProductContext.js"
 
 const HomePage = () => {
   const navigate = useNavigate();
-  const [allProduct,setAllProduct] = useState([])
+  const {allProducts,setAllProducts} = useContext(ProductContext)
   const { cart, setCart } = useContext(CartContext);
   
   const [searchQuery, setSearchQuery] = useState("");
@@ -18,21 +19,12 @@ const HomePage = () => {
   };
 
   // Reset scroll on mount
-  useEffect(() => {
-    fetch("http://localhost:5000", { method: "GET" })
-      .then(res => res.json())
-      .then((data) => {
-        setAllProduct(data.product);
-        console.log(data);
-        window.scrollTo(0, 0);
-      })
-      .catch(err => console.error("Fetch error:", err));
-}, []);
+
 
   // Reusable Product Section Component
   const ProductSection = ({ title, category, tagline }) => {
     // Filter products based on category and search bar
-    const sectionProducts = allProduct.filter(p => 
+    const sectionProducts = allProducts.filter(p => 
       p.category === category && 
       p.name.toLowerCase().includes(searchQuery.toLowerCase())
     ).slice(0, 4); // Show only top 4 on homepage for a clean look
@@ -56,13 +48,13 @@ const HomePage = () => {
 
         <div className="product-grid">
           {sectionProducts.map(product => (
-            <div className="product-card" key={product._id} onClick={() => navigate(`/product/${product.id}`)}>
+            <div className="product-card" key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
               <div className="card-image-wrapper">
                 <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} className="product-img" />
                 <div className="card-overlay">
                    <button 
                     className="quick-add-btn" 
-                    onClick={(e) => { e.stopPropagation(); addToCart(product.id); }}
+                    onClick={(e) => { e.stopPropagation(); addToCart(product._id); }}
                   >
                     <Plus size={18} /> Add to Bag
                   </button>

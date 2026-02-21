@@ -4,9 +4,11 @@ import { products } from "../config/db";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../context/AddtocartContextProvider";
 import { SlidersHorizontal, Plus, ShoppingBag,ShoppingCart,Search} from "lucide-react";
+import {ProductContext} from "../context/ProductContext.js"
 
 const ViewAll = () => {
   const navigate = useNavigate();
+  const {allProducts,setAllProducts} = useContext(ProductContext)
   const {cart, setCart } = useContext(CartContext);
   const [filter, setFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("default");
@@ -18,7 +20,7 @@ const ViewAll = () => {
   };
 
   // 1. Filter Logic
-  const filteredProducts = products.filter((p) => 
+  const filteredProducts = allProducts.filter((p) => 
     filter === "all" ? true : p.category === filter &&
       p.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -93,7 +95,7 @@ const ViewAll = () => {
         {sortedProducts.map((product) => (
           <div className="view-all-card" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
             <div className="view-all-img-wrapper">
-              <img src={`/${product.img}`} alt={product.name} />
+              <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} />
               <button 
                 className="view-all-quick-add"
                 onClick={(e) => { e.stopPropagation(); addToCart(product.id); }}
