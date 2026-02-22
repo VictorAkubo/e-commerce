@@ -3,7 +3,8 @@ import Sidebar from "./components/Sidebar.jsx"
 // Ensure these paths match your actual folder structure!
 import Dashboard from "./pages/Dashboard.jsx" 
 import AddProduct from "./pages/AddProduct.jsx"
-
+import OrdersPage from "./pages/OrdersPage.jsx"
+import ProductsAdmin from "./pages/ProductsAdmin.jsx"
 function App() {
   const [activeTab, setActiveTab] = useState('overview');
 
@@ -18,6 +19,11 @@ function App() {
 
         {/* VIEW 2: The Upload Form */}
         {activeTab === 'add-product' && <AddProduct />}
+        
+         {/* VIEW 3: The orders */}
+        {activeTab === 'orders' && <OrdersPage />}
+        
+      {activeTab === 'products' && <ProductsAdmin  setActiveTab={setActiveTab}/>}
         
         {/* Add more views as you build them (Orders, Settings, etc.) */}
       </main>
