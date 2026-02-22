@@ -36,7 +36,7 @@ const ViewAll = () => {
   return (
     <>
      <nav className="navbar">
-        <h1 className="logo" onClick={() => navigate("/")}>BuyME<span>.</span></h1>
+        <h1 className="logo" onClick={() => navigate("/")}>FeetFitness<span>.</span></h1>
         {
         filter === "all" ? (
         <></>
@@ -93,12 +93,12 @@ const ViewAll = () => {
 
       <main className="master-grid">
         {sortedProducts.map((product) => (
-          <div className="view-all-card" key={product.id} onClick={() => navigate(`/product/${product.id}`)}>
+          <div className="view-all-card" key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
             <div className="view-all-img-wrapper">
               <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} />
               <button 
                 className="view-all-quick-add"
-                onClick={(e) => { e.stopPropagation(); addToCart(product.id); }}
+                onClick={(e) => { e.stopPropagation(); addToCart(product._id); }}
               >
                 <Plus size={20} />
               </button>

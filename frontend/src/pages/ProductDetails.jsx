@@ -11,7 +11,8 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const {allProducts,setAllProducts} = useContext(ProductContext)
   const { setCart } = useContext(CartContext);
-  const product = allProducts.find((p) => p._id === Number(id));
+  
+  const product = allProducts.find((p) => p._id === id);
 
   const [quantity, setQuantity] = useState(1);
   const [selectedSize, setSelectedSize] = useState("");
@@ -43,7 +44,7 @@ const ProductDetails = () => {
           {/* Left: Image Section */}
           <div className="image-display">
             <div className="discount-tag">-{discount}%</div>
-            <img src={`http://localhost/5000/data/uploads/${product.img}`} alt={product.name} />
+            <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} />
           </div>
 
           {/* Right: Info Section */}
@@ -109,7 +110,7 @@ const ProductDetails = () => {
                 <span>{quantity}</span>
                 <button onClick={() => setQuantity(quantity + 1)}>+</button>
               </div>
-              <button className="main-add-btn" onClick={() => addToCart(product.id)}>
+              <button className="main-add-btn" onClick={() => addToCart(product._id)}>
                 Add to Bag <ShoppingBag size={20} />
               </button>
             </div>
@@ -134,10 +135,10 @@ const ProductDetails = () => {
                 }}
               >
                 <div className="related-img-wrapper">
-                  <img src={`/${item.img}`} alt={item.name} />
+                  <img src={`http://localhost:5000/data/uploads/${item.img}`} alt={item.name} />
                   <button 
                     className="related-quick-add"
-                    onClick={(e) => { e.stopPropagation(); addToCart(item.id); }}
+                    onClick={(e) => { e.stopPropagation(); addToCart(item._id); }}
                   >
                     <Plus size={18} />
                   </button>

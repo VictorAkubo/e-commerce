@@ -78,7 +78,7 @@ const HomePage = () => {
     <div className="homepage-container">  
       {/* Sticky Navigation Bar */}
       <nav className="navbar">
-        <h1 className="logo" onClick={() => navigate("/")}>BuyME<span>.</span></h1>
+        <h1 className="logo" onClick={() => navigate("/")}>Feet fitness<span>.</span></h1>
         
         <div className="search-wrapper">
           <Search size={18} className="search-icon" />
@@ -154,7 +154,7 @@ const HomePage = () => {
       <footer className="footer-simple">
         <div className="footer-content">
           <p className="footer-logo">BuyME<span>.</span></p>
-          <p>© 2026 BuyME Luxury Retail. All rights reserved.</p>
+          <p>© 2026 FeetFitness Luxury Retail. All rights reserved.</p>
         </div>
       </footer>
     </div>
