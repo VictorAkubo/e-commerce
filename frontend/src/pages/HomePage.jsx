@@ -2,16 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import "./HomePage.css";
 import { useNavigate } from "react-router-dom";
 /*import { products } from "../config/db.js";*/
-import { Search, ShoppingCart, Plus, ArrowRight } from 'lucide-react';
+import {Menu, Search, ShoppingCart, Plus, ArrowRight } from 'lucide-react';
 import { CartContext } from "../context/AddtocartContextProvider.js";
 import {ProductContext} from "../context/ProductContext.js"
 
 const HomePage = () => {
   const navigate = useNavigate();
   const {allProducts,setAllProducts} = useContext(ProductContext)
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, searchQuery, setSearchQuery} = useContext(CartContext);
   
-  const [searchQuery, setSearchQuery] = useState("");
 
   // Function to add item to cart
   const addToCart = (id) => {
@@ -75,29 +74,7 @@ const HomePage = () => {
   };
 
   return (
-    <div className="homepage-container">  
-      {/* Sticky Navigation Bar */}
-      <nav className="navbar">
-        <h1 className="logo" onClick={() => navigate("/")}>Feet fitness<span>.</span></h1>
-        
-        <div className="search-wrapper">
-          <Search size={18} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search for styles..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-
-        <div className="nav-actions">
-          <button className="cart-btn" onClick={() => navigate("/cart")}>
-            <ShoppingCart size={22}/> 
-            {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
-          </button>
-        </div>
-      </nav>
-
+    <div className="homepage-container">
       {/* Hero Banner Section */}
       {searchQuery.length > 0  ? (
       <h3 className="searched" >Searched: {searchQuery}</h3>

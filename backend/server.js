@@ -2,7 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import Stripe from "stripe";
-import productRouter from "./routes/productRoutes.js"; // your existing product routes
+import productRouter from "./routes/productRoutes.js";
+import loginRouter from "./routes/loginRoutes.js";
+
+//middleware
+import {authMiddleware} from "./middleware/authMiddleware.js"
+
+// your existing product routes
 // we’ll create this
 import 'dotenv/config';
 import path from "path"
@@ -15,7 +21,7 @@ app.use(express.static("public"));
 /*app.use(express.static(path.join(__dirname,"public")))*/
 
 // Connect to MongoDB
-await mongoose.connect(
+ await mongoose.connect(
   "mongodb+srv://victorugbede89:victoria%2C90@cluster0.k8mdo4j.mongodb.net/test"
 );
 console.log("MongoDB Connected");
@@ -27,7 +33,9 @@ app.response.sendStatus = function (statusCode, type, message) {
     .send(message)
 }
 // Routes
+app.use("/",loginRouter)
 app.use("/", productRouter);
+
 
 // Start server
 app.listen(5000, () => {

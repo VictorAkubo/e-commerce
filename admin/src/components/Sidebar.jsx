@@ -29,8 +29,8 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
       {/* --- MOBILE HAMBURGER BUTTON --- */}
       <button 
         onClick={toggleSidebar}
-        className={`fixed top-6 left-4 
-  ${isOpen ? "translate-x-55" : "translate-x-0"} 
+        className={`fixed top-4 left-4 
+  ${isOpen ? "translate-x-55" : "translate-x-73"} 
   z-50 p-2 bg-white rounded-xl shadow-lg border border-slate-200 
   md:hidden text-slate-600 hover:text-blue-600 
   transition-all duration-300 ease-in-out active:scale-90`}

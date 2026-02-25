@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* You can add your FeetFitness custom colors here */
+@theme {
+  --color-brand: #bef264;
+  --color-dark: #0f172a;
+}
