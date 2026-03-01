@@ -54,7 +54,7 @@ const Sidebar = ({ setOpenSidebar }) => {
                   localStorage.removeItem("token")
                   localStorage.removeItem("userDetails")
                   localStorage.removeItem("cart")
-                  navigate("/")
+                  window.location.href = "/"
                 }else{
                   navigate(route.path);
                 }
