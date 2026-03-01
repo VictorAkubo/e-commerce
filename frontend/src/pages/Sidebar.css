@@ -12,6 +12,8 @@
 
 /* SIDEBAR */
 .sidebar {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
   width: 280px;
   height: 100%;
   position: fixed;
