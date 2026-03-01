@@ -4,15 +4,19 @@ import cors from "cors";
 import Stripe from "stripe";
 import productRouter from "./routes/productRoutes.js";
 import loginRouter from "./routes/loginRoutes.js";
-import paymentRouter from "./routes/paymentRoutes.js";
+import paymentRouter from "./routes/paymentRoutes.js"
+;
 
 //middleware
 import {authMiddleware} from "./middleware/authMiddleware.js"
 
 // your existing product routes
 // we’ll create this
-import 'dotenv/config';
 import path from "path"
+
+import dotenv from "dotenv";
+
+dotenv.config(); // load .env variables
 
 
 const app = express();
