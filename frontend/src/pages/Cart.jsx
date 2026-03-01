@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 import "./Cart.css";
 import {ProductContext} from "../context/ProductContext.js"
 
+
+
 const Cart = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, } = useContext(CartContext);
   const navigate = useNavigate();
 
   const [cartItems, setCartItems] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
-  const {allProducts,setAllProducts} = useContext(ProductContext)
+  const {allProducts,setAllProducts,token} = useContext(ProductContext)
   // ✅ 2. Map cart AFTER products load
   useEffect(() => {
     if (allProducts.length === 0) return;
@@ -69,13 +71,38 @@ const Cart = () => {
   );
 
   const shipping = subtotal > 50 ? 0 : 5;
+  
 
-  const handleCheckout = () => {
+  
+  const handleCheckout = async () => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  };
+ const cartItem = [
+    {
+      name: "Men long",
+      price: 700, 
+      quantity: 1,
+    },
+        {
+      name: "Men long",
+      price: 701, 
+      quantity: 1,
+    },
+  ];
+
+  const res = await fetch("http://localhost:5000/create-checkout-session", {
+    method: "POST",
+    headers: {
+      Authorization:`Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ cartItem }),
+  });
+
+  const data = await res.json();
+
+  // Redirect to Stripe checkout
+  window.location.href = data.url;
+};
 
   return (
     <div className="cart-page-wrapper">

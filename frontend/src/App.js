@@ -12,12 +12,15 @@ import Auth from './pages/Auth';
 import {Menu, Search, ShoppingCart, Plus, ArrowRight } from "lucide-react";
 import { CartContext } from "./context/AddtocartContextProvider.js";
 import Sidebar from "./pages/Sidebar.jsx"
+import Success from "./pages/Success.jsx"
+import Cancel from "./pages/Cancel.jsx"
 
 // Load Stripe using the publishable key from environment variables
 
 function App() {
   // Optional: log to make sure the key is loaded
   const navigate=useNavigate()
+  const userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const { cart, setCart,searchQuery, setSearchQuery} = useContext(CartContext);
   const [openSidebar,setOpenSidebar] = useState(false)
 
@@ -41,7 +44,13 @@ function App() {
         </div>
 
         <div className="nav-actions">
-          <button className="cart-btn" onClick={() => navigate("/cart")}>
+          <button className="cart-btn" onClick={() =>{
+            if(userDetails){
+              navigate("/cart")
+            }else{
+              navigate("/auth")
+            }
+          }}>
             <ShoppingCart size={22}/> 
             {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
           </button>
@@ -53,6 +62,8 @@ function App() {
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/view-all" element={<ViewAll />} />
          <Route path="/auth" element={<Auth />} />
+           <Route path="/success" element={<Success />} />
+            <Route path="/cancel" element={<Cancel />} />
       </Routes>
     </>
   );

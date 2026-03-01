@@ -9,11 +9,10 @@ import {ProductContext} from "../context/ProductContext.js"
 const ViewAll = () => {
   const navigate = useNavigate();
   const {allProducts,setAllProducts} = useContext(ProductContext)
-  const {cart, setCart } = useContext(CartContext);
+  const {cart, setCart,searchQuery, setSearchQuery } = useContext(CartContext);
   const [filter, setFilter] = useState("all");
   const [sortOrder, setSortOrder] = useState("default");
   
-  const [searchQuery, setSearchQuery] = useState("");
 
   const addToCart = (id) => {
     setCart((prevCart) => [...prevCart, id]);
@@ -35,32 +34,6 @@ const ViewAll = () => {
 
   return (
     <>
-     <nav className="navbar">
-        <h1 className="logo" onClick={() => navigate("/")}>FeetFitness<span>.</span></h1>
-        {
-        filter === "all" ? (
-        <></>
-        )
-        : (
-        <div className="search-wrapper">
-          <Search size={18} className="search-icon" />
-          <input 
-            type="text" 
-            placeholder="Search for styles..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-        )
-        }
-
-        <div className="nav-actions">
-          <button className="cart-btn" onClick={() => navigate("/cart")}>
-            <ShoppingCart size={22}/> 
-            {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
-          </button>
-        </div>
-      </nav>
     <div className="view-all-wrapper">
       <header className="view-all-header">
         <div className="header-content">

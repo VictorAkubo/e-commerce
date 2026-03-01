@@ -63,7 +63,7 @@ const Auth =()=>{
     if(data.status==200){
       setTimeout(()=>{
           navigate("/")
-        },2000)
+        },1500)
     }
         
         
