@@ -76,7 +76,7 @@ const Cart = () => {
   
   const handleCheckout = async () => {
     setLoading(true);
- const cartItem = [
+/* const cartItem = [
     {
       name: "Men long",
       price: 700, 
@@ -87,7 +87,7 @@ const Cart = () => {
       price: 701, 
       quantity: 1,
     },
-  ];
+  ];*/
 
   const res = await fetch("http://localhost:5000/create-checkout-session", {
     method: "POST",
@@ -95,7 +95,7 @@ const Cart = () => {
       Authorization:`Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ cartItem }),
+    body: JSON.stringify({ cartItems }),
   });
 
   const data = await res.json();
@@ -209,7 +209,7 @@ const Cart = () => {
           <button
             className="checkout-btn"
             onClick={handleCheckout}
-            disabled={loading || cartItems.length === 0}
+            disabled={loading || cartItems.length === 0 || subtotal < 1000 }
           >
             {loading ? "Redirecting..." : "Go to Checkout"}
           </button>

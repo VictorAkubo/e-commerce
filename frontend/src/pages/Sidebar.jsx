@@ -53,6 +53,8 @@ const Sidebar = ({ setOpenSidebar }) => {
                 if(route.path == "/logout"){
                   localStorage.removeItem("token")
                   localStorage.removeItem("userDetails")
+                  localStorage.removeItem("cart")
+                  navigate("/")
                 }else{
                   navigate(route.path);
                 }
