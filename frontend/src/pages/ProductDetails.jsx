@@ -18,9 +18,10 @@ const ProductDetails = () => {
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
 
-  if (!product) return <div className="error-state"><h2>Product not found</h2>
-  <img src="/emptypage.gif"/>
-  </div>;
+  if (!product) return  <div className="no-result">
+          <ShoppingBag size={50} />
+          <h2>No items found in this category.</h2>
+        </div>
 
   // Filter for Related Products (Same category, excluding current product)
   const relatedProducts = allProducts
@@ -130,7 +131,7 @@ const ProductDetails = () => {
                 className="related-card" 
                 key={item.id} 
                 onClick={() => {
-                  navigate(`/product/${item.id}`);
+                  navigate(`/product/${item._id}`);
                   window.scrollTo(0, 0); // Scroll to top when clicking a new product
                 }}
               >

@@ -89,7 +89,7 @@ const ViewAll = () => {
       </main>
       
       {sortedProducts.length === 0 && (
-        <div className="no-results">
+        <div className="no-result">
           <ShoppingBag size={50} />
           <h2>No items found in this category.</h2>
         </div>

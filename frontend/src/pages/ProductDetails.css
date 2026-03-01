@@ -251,6 +251,9 @@
   gap: 10px;
   margin-bottom: 20px;
 }
+.detail-rating .stars{
+  display:flex;
+}
 
 .reviews-text {
   font-size: 0.9rem;
