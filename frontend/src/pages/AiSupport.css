@@ -1,0 +1,116 @@
+.aisupport {
+  width: 100%;
+  max-width: 400px;
+  height: 550px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Header */
+.support-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.companysupport {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981; /* Green dot for "Online" */
+  border-radius: 50%;
+}
+
+/* Chat History */
+.chatsection {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: #f9fafb;
+}
+
+.msg-container {
+  display: flex;
+  width: 100%;
+}
+
+.me-row { justify-content: flex-end; }
+.ai-row { justify-content: flex-start; }
+
+.mestyle, .aistyle {
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  margin: 0;
+  max-width: 85%;
+  line-height: 1.5;
+}
+
+.mestyle {
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 14px 14px 2px 14px;
+}
+
+.aistyle {
+  background: #ffffff;
+  color: #374151;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px 14px 14px 2px;
+}
+
+/* Input Section */
+.askinputdiv {
+  padding: 16px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  border-top: 1px solid #f3f4f6;
+}
+
+.askinput {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 0.9rem;
+  padding: 8px;
+  color: #1f2937;
+}
+
+.send-icon {
+  background: transparent;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.send-icon:hover {
+  color: #2563eb;
+}
+
+/* Nice Scrollbar */
+.chatsection::-webkit-scrollbar {
+  width: 4px;
+}
+.chatsection::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+  border-radius: 10px;
+}

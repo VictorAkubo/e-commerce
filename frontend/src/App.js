@@ -1,7 +1,7 @@
 import './App.css';
 
 import React,{useContext,useState} from 'react';
-import { Route, Routes ,useNavigate} from 'react-router-dom';
+import { Route, Routes ,useNavigate,useLocation} from 'react-router-dom';
 
 import HomePage from './pages/HomePage';
 import Cart from './pages/Cart';
@@ -14,12 +14,15 @@ import { CartContext } from "./context/AddtocartContextProvider.js";
 import Sidebar from "./pages/Sidebar.jsx"
 import Success from "./pages/Success.jsx"
 import Cancel from "./pages/Cancel.jsx"
+import AiSupport from "./pages/AiSupport.jsx"
 
 // Load Stripe using the publishable key from environment variables
 
 function App() {
   // Optional: log to make sure the key is loaded
   const navigate=useNavigate()
+  const location = useLocation();
+  const shouldShowNavbar = location.pathname !== '/aisupport';
   const userDetails = JSON.parse(localStorage.getItem("userDetails"));
   const { cart, setCart,searchQuery, setSearchQuery} = useContext(CartContext);
   const [openSidebar,setOpenSidebar] = useState(false)
@@ -29,6 +32,7 @@ function App() {
     <>
       <ScrollToTop />
       {openSidebar && (<Sidebar setOpenSidebar={setOpenSidebar}/>)}
+      {shouldShowNavbar && (
      <nav className="navbar">
                 <Menu onClick={()=>setOpenSidebar(!openSidebar)} size={21}/>
         <h1 className="logo" onClick={() => navigate("/")}>Feet fitness<span>.</span></h1>
@@ -56,6 +60,7 @@ function App() {
           </button>
         </div>
       </nav>
+            )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/cart" element={<Cart/>} />
@@ -64,6 +69,8 @@ function App() {
          <Route path="/auth" element={<Auth />} />
            <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
+             <Route path="/aisupport" element={<AiSupport />} />
+            
       </Routes>
     </>
   );

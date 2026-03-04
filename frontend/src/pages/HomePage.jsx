@@ -90,7 +90,9 @@ const HomePage = () => {
           <button className="hero-cta" onClick={() => window.scrollTo({top: 850, behavior: 'smooth'})}>
             Shop Now
           </button>
+         <p onClick={()=>navigate("/aisupport")}className="ailink">Ask <span>Our</span> Ai About <span>Our</span> Product</p>
         </div>
+                 
       </header>
       
       {/* Modern Announcement Ticker */}
