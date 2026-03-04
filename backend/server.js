@@ -4,10 +4,12 @@ import cors from "cors";
 import Stripe from "stripe";
 import productRouter from "./routes/productRoutes.js";
 import loginRouter from "./routes/loginRoutes.js";
-import paymentRouter from "./routes/paymentRoutes.js"
+import paymentRouter from "./routes/paymentRoutes.js";
+import AiSupportRouter from "./routes/AiSupportRoutes.js"
 ;
 
 //middleware
+
 import {authMiddleware} from "./middleware/authMiddleware.js"
 
 // your existing product routes
@@ -15,8 +17,7 @@ import {authMiddleware} from "./middleware/authMiddleware.js"
 import path from "path"
 
 import dotenv from "dotenv";
-
-dotenv.config(); // load .env variables
+dotenv.config();
 
 
 const app = express();
@@ -39,8 +40,9 @@ app.response.sendStatus = function (statusCode, type, message) {
 }
 // Routes
 app.use("/",loginRouter)
-app.use("/", productRouter);
-app.use("/",authMiddleware,paymentRouter);
+app.use("/",productRouter);
+app.use("/",AiSupportRouter);
+//app.use("/",authMiddleware,paymentRouter);
 
 
 // Start server
