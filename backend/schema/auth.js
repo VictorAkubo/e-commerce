@@ -12,7 +12,16 @@ const authSchema = mongoose.Schema({
   name:{
     required:true,
     type:String,
-  }
+  },
+  order:[
+    {
+      id:String,
+      name: String,
+      price: Number,
+      quantity: Number,
+      img:String
+    }
+  ]
 })
 
 const authentication = mongoose.model("Auth",authSchema)

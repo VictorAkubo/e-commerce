@@ -15,6 +15,8 @@ import Sidebar from "./pages/Sidebar.jsx"
 import Success from "./pages/Success.jsx"
 import Cancel from "./pages/Cancel.jsx"
 import AiSupport from "./pages/AiSupport.jsx"
+import Orders from "./pages/Orders.jsx"
+import UseReducer from "./components/UseReducer.jsx"
 
 // Load Stripe using the publishable key from environment variables
 
@@ -30,6 +32,7 @@ function App() {
 
   return (
     <>
+    
       <ScrollToTop />
       {openSidebar && (<Sidebar setOpenSidebar={setOpenSidebar}/>)}
       {shouldShowNavbar && (
@@ -70,7 +73,7 @@ function App() {
            <Route path="/success" element={<Success />} />
             <Route path="/cancel" element={<Cancel />} />
              <Route path="/aisupport" element={<AiSupport />} />
-            
+             <Route path="/orders" element={<Orders />} />
       </Routes>
     </>
   );

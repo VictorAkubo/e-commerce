@@ -1,6 +1,6 @@
 import "./Sidebar.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import { House, List, ShoppingCart,LogOut,LogIn} from "lucide-react";
+import { House,Bus, List, ShoppingCart,LogOut,LogIn} from "lucide-react";
 
 const Sidebar = ({ setOpenSidebar }) => {
   const navigate = useNavigate();
@@ -21,6 +21,11 @@ const Sidebar = ({ setOpenSidebar }) => {
       name: "Cart",
       path: "/cart",
       icon: <ShoppingCart size={20} strokeWidth={2.5} />,
+    },
+        {
+      name: "Orders",
+      path: "/orders",
+      icon: <Bus size={20} strokeWidth={2.5} />,
     },
         {
       name: userDetails ? "logout" : "Login",

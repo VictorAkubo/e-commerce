@@ -76,26 +76,16 @@ const Cart = () => {
   
   const handleCheckout = async () => {
     setLoading(true);
-/* const cartItem = [
-    {
-      name: "Men long",
-      price: 700, 
-      quantity: 1,
-    },
-        {
-      name: "Men long",
-      price: 701, 
-      quantity: 1,
-    },
-  ];*/
-
+    
+    const userDetail = JSON.parse(localStorage.getItem("userDetails"))
+    
   const res = await fetch("http://localhost:5000/create-checkout-session", {
     method: "POST",
     headers: {
       Authorization:`Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ cartItems }),
+    body: JSON.stringify({ cartItems, email : userDetail.email}),
   });
 
   const data = await res.json();

@@ -1,7 +1,10 @@
-import {useState} from "react"
+import {useState,useReducer} from "react"
 import {useNavigate} from "react-router-dom"
 import "./Auth.css"
 import { ToastContainer, toast } from 'react-toastify';
+
+import Polymorph from "./Polymorph"
+
 const Auth =()=>{
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false);
@@ -35,7 +38,7 @@ const Auth =()=>{
         toast(data.message);
         localStorage.setItem("userDetails", JSON.stringify(data.userDetails));
         localStorage.setItem("token",data.token);
-            if(data.status==200){
+            if(data.status==201){
       setTimeout(()=>{
           navigate("/")
         },2000)
@@ -114,7 +117,6 @@ const Auth =()=>{
             className="auth-input"
             onChange={handleChange}
           />
-
           {/* Password */}
           <div className="password-wrapper">
             <input

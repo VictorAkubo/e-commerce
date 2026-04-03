@@ -42,7 +42,7 @@ app.response.sendStatus = function (statusCode, type, message) {
 app.use("/",loginRouter)
 app.use("/",productRouter);
 app.use("/",AiSupportRouter);
-//app.use("/",authMiddleware,paymentRouter);
+app.use("/",authMiddleware,paymentRouter);
 
 
 // Start server

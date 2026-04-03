@@ -24,8 +24,8 @@ export const SignUp = async (req, res) => {
       message:newUser.name + " created successfully",
       token,
       userDetails:{
-          name:userExists.name,
-          email:userExists.email
+          name:newUser.name,
+          email:newUser.email
         },
     });
     
