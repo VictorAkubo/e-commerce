@@ -7,7 +7,7 @@ const ProductContextProvider
     const [token, setToken] = useState("");
   useEffect(() => {
     
-    fetch("http://localhost:5000")
+    fetch("https://e-commerce-ddkl.onrender.com")
       .then((res) => res.json())
       .then((data) => {
         setAllProducts(data.product);
