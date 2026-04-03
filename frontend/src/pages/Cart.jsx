@@ -79,7 +79,7 @@ const Cart = () => {
     
     const userDetail = JSON.parse(localStorage.getItem("userDetails"))
     
-  const res = await fetch("http://localhost:5000/create-checkout-session", {
+  const res = await fetch("https://e-commerce-ddkl.onrender.com/create-checkout-session", {
     method: "POST",
     headers: {
       Authorization:`Bearer ${token}`,

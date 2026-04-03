@@ -28,7 +28,7 @@ const Auth =()=>{
     e.preventDefault();
     if(pageSetup === "signup"){
       setIsLoading(true)
-      fetch("http://localhost:5000/signup",{
+      fetch("https://e-commerce-ddkl.onrender.com/signup",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(loginDetails)
@@ -53,7 +53,7 @@ const Auth =()=>{
       })
     }else{
       setIsLoading(true)
-      fetch("http://localhost:5000/login",{
+      fetch("https://e-commerce-ddkl.onrender.com/login",{
         method:"POST",
         headers:{"Content-Type":"application/json"},
         body:JSON.stringify(loginDetails)
