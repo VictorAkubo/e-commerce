@@ -49,7 +49,7 @@ const HomePage = () => {
           {sectionProducts.map(product => (
             <div className="product-card" key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
               <div className="card-image-wrapper">
-                <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} className="product-img" />
+                <img src={`https://e-commerce-ddkl.onrender.com/data/uploads/${product.img}`} alt={product.name} className="product-img" />
                 <div className="card-overlay">
                    <button 
                     className="quick-add-btn" 

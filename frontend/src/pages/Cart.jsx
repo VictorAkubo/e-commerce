@@ -122,7 +122,7 @@ const Cart = () => {
                 <div className="cart-card" key={item._id}>
                   <div className="cart-img-box">
                     <img
-                      src={`http://localhost:5000/data/uploads/${item.img}`}
+                      src={`https://e-commerce-ddkl.onrender.com/data/uploads/${item.img}`}
                       alt={item.name}
                     />
                   </div>

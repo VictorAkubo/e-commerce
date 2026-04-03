@@ -68,7 +68,7 @@ const ViewAll = () => {
         {sortedProducts.map((product) => (
           <div className="view-all-card" key={product._id} onClick={() => navigate(`/product/${product._id}`)}>
             <div className="view-all-img-wrapper">
-              <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} />
+              <img src={`https://e-commerce-ddkl.onrender.com/data/uploads/${product.img}`} alt={product.name} />
               <button 
                 className="view-all-quick-add"
                 onClick={(e) => { e.stopPropagation(); addToCart(product._id); }}

@@ -45,7 +45,7 @@ const ProductDetails = () => {
           {/* Left: Image Section */}
           <div className="image-display">
             <div className="discount-tag">-{discount}%</div>
-            <img src={`http://localhost:5000/data/uploads/${product.img}`} alt={product.name} />
+            <img src={`https://e-commerce-ddkl.onrender.com/data/uploads/${product.img}`} alt={product.name} />
           </div>
 
           {/* Right: Info Section */}
